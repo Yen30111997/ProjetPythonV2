@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Commentaire</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'centres/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <!-- Incluez votre en-tête ici -->
+    </header>
+    <main>
+        <h1>Ajouter un Commentaire pour {{ session }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Ajouter Commentaire</button>
+        </form>
+    </main>
+</body>
+</html>

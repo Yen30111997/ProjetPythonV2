@@ -1,0 +1,32 @@
+<!-- centres/templates/centres/centre_list.html -->
+{% extends 'centres/base.html' %}
+
+{% block title %}Liste des Centres{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="search-container">
+        <form method="GET" action="{% url 'centres:centre_list' %}">
+            <input type="text" name="q" placeholder="Rechercher des centres..." value="{{ request.GET.q }}">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </form>
+    </div>
+
+    <div class="centre-list">
+        {% if centres %}
+            <div class="cards-container">
+                {% for centre in centres %}
+                    <div class="card">
+                        <h3>{{ centre.nom }}</h3>
+                        <p><strong>Adresse:</strong> {{ centre.adresse }}</p>
+                        <p>{{ centre.description|truncatewords:20 }}</p>
+                        <p><a href="{% url 'centres:centre_detail' centre.pk %}" class="btn btn-secondary">En savoir plus</a></p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Aucun centre trouvé.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!-- centres/templates/centres/centre_detail.html -->
+{% extends 'centres/base.html' %}
+
+{% block title %}{{ centre.nom }} - Détails{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="centre-detail">
+        <h1>{{ centre.nom }}</h1>
+        <p><strong>Adresse:</strong> {{ centre.adresse }}, {{ centre.ville }} - {{ centre.code_postal }}, {{ centre.pays }}</p>
+        <p>{{ centre.description }}</p>
+        <p><strong>Mots Clés:</strong> 
+            {% for mot in centre.mots_cles.all %}
+                <span class="tag">{{ mot.mot }}</span>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+        <p><a href="{% url 'centres:centre_list' %}" class="btn btn-secondary">Retour</a></p>
+    </div>
+</div>
+{% endblock %}
